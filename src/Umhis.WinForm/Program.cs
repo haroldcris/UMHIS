@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using Umhis.Forms;
 
-namespace Umhis.WinForm
+namespace Umhis
 {
     static class Program
     {
@@ -13,7 +14,7 @@ namespace Umhis.WinForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }

@@ -6,12 +6,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{07875434-77E6-4743-A2CD-4D402074F6A0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Umhis.WinForm</RootNamespace>
+    <RootNamespace>Umhis</RootNamespace>
     <AssemblyName>Umhis</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -35,10 +35,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>..\..\_Output\Release\</OutputPath>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Doctors_Bag.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MDIWindowManager, Version=2.1.2521.32075, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MDIWindowManager.2.1.0\lib\MDIWindowManager.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.Ribbon, Version=2.0.0.0, Culture=neutral, PublicKeyToken=928736e248aa81f9, processorArchitecture=MSIL">
+      <HintPath>..\packages\RibbonWinForms.5.0.1.1\lib\net45\System.Windows.Forms.Ribbon.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,17 +60,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Core\Account\PasswordStorage.cs" />
+    <Compile Include="Core\Account\UserAccount.cs" />
+    <Compile Include="Core\Database\DataReaderExtension.cs" />
+    <Compile Include="Core\Database\SqlServer.cs" />
+    <Compile Include="Core\Entity\BaseEntity.cs" />
+    <Compile Include="Core\Entity\EntityRecordInfo.cs" />
+    <Compile Include="Core\Patient.cs" />
+    <Compile Include="Forms\Patient\PatientList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\Patient\PatientList.Designer.cs">
+      <DependentUpon>PatientList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Patient\PatientDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Patient\PatientDialog.Designer.cs">
+      <DependentUpon>PatientDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Patient\PatientList.resx">
+      <DependentUpon>PatientList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Patient\PatientDialog.resx">
+      <DependentUpon>PatientDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -72,6 +106,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -98,10 +133,50 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Umhis.Core\Umhis.Core.csproj">
-      <Project>{9cb1af53-9dbd-45c4-a86f-24ebaf87036b}</Project>
-      <Name>Umhis.Core</Name>
-    </ProjectReference>
+    <None Include="Resources\Team_40px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MedicalDoctor_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pills_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddFile_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit File_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteBin_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteBin_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Document_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditProperty_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remove_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\data\database.mdf">
+      <Link>Data\database.mdf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\data\database_log.ldf">
+      <Link>Data\database_log.ldf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>database.mdf</DependentUpon>
+    </Content>
+    <Content Include="Doctors_Bag.ico" />
+    <None Include="Resources\Synchronize_32px.png" />
+    <None Include="Resources\Checkmark_32px.png" />
+    <None Include="Resources\Cancel_32px.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

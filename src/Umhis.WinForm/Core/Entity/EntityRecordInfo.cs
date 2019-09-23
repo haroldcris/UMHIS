@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using Umhis.Core.Data;
+using Umhis.Core.Database;
 
 namespace Umhis.Core
 {

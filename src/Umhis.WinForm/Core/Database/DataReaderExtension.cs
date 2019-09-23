@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace Umhis.Core.Data
+namespace Umhis.Core.Database
 {
     public static class DataReaderExtension
     {

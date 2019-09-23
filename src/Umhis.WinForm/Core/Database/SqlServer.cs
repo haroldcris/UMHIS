@@ -1,8 +1,8 @@
 ﻿using System.Data.SqlClient;
 
-namespace Umhis.Core.Data
+namespace Umhis.Core.Database
 {
-    internal static class Database
+    internal static class SqlServer
     {
         public static SqlConnection CreateAndOpenConnection()
         {
