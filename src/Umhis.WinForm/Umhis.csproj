@@ -38,11 +38,17 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Doctors_Bag.ico</ApplicationIcon>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MDIWindowManager, Version=2.1.2521.32075, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MDIWindowManager.2.1.0\lib\MDIWindowManager.dll</HintPath>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,6 +73,30 @@
     <Compile Include="Core\Entity\BaseEntity.cs" />
     <Compile Include="Core\Entity\EntityRecordInfo.cs" />
     <Compile Include="Core\Patient.cs" />
+    <Compile Include="Forms\Account\AccountList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Account\AccountList.Designer.cs">
+      <DependentUpon>AccountList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Doctor\DoctorInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Doctor\DoctorInfoDialog.Designer.cs">
+      <DependentUpon>DoctorInfoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LogIn\BackgroundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogIn\BackgroundForm.Designer.cs">
+      <DependentUpon>BackgroundForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LogIn\LogInDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogIn\LogInDialog.Designer.cs">
+      <DependentUpon>LogInDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Patient\PatientList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,22 +109,52 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Patient\PatientDialog.cs">
+    <Compile Include="Forms\Patient\PatientInfoDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Patient\PatientDialog.Designer.cs">
-      <DependentUpon>PatientDialog.cs</DependentUpon>
+    <Compile Include="Forms\Patient\PatientInfoDialog.Designer.cs">
+      <DependentUpon>PatientInfoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Patient\PatientSearchDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Patient\PatientSearchDialog.Designer.cs">
+      <DependentUpon>PatientSearchDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Case\CaseDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Case\CaseDialog.Designer.cs">
+      <DependentUpon>CaseDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Account\AccountList.resx">
+      <DependentUpon>AccountList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Doctor\DoctorInfoDialog.resx">
+      <DependentUpon>DoctorInfoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogIn\BackgroundForm.resx">
+      <DependentUpon>BackgroundForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogIn\LogInDialog.resx">
+      <DependentUpon>LogInDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Patient\PatientList.resx">
       <DependentUpon>PatientList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Patient\PatientDialog.resx">
-      <DependentUpon>PatientDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Patient\PatientInfoDialog.resx">
+      <DependentUpon>PatientInfoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Patient\PatientSearchDialog.resx">
+      <DependentUpon>PatientSearchDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Case\CaseDialog.resx">
+      <DependentUpon>CaseDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -133,15 +193,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Team_40px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MedicalDoctor_40px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Pills_40px.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\AddFile_32px.png" />
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +223,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>database.mdf</DependentUpon>
     </Content>
-    <Content Include="Doctors_Bag.ico" />
+    <Content Include="AppIcon.ico" />
+    <None Include="Resources\Login_24px.png" />
+    <None Include="Resources\Cancel_16px.png" />
+    <None Include="Resources\Key_40px.png" />
+    <None Include="Resources\Password_40px.png" />
+    <None Include="Resources\Save_24px.png" />
+    <None Include="Resources\Treatment_40px.png" />
+    <None Include="Resources\Team_40px.png" />
+    <None Include="Resources\FindUserMale_40px.png" />
+    <None Include="Resources\MedicalDoctor_40px.png" />
+    <None Include="Resources\Edit_File_32px.png" />
+    <None Include="Resources\Syringe_40px.png" />
+    <None Include="Resources\Pills_40px.png" />
+    <None Include="Resources\PillBottle_40px.png" />
+    <None Include="Resources\Olfu Main.jpg" />
+    <None Include="Resources\MaleUser_16px.png" />
+    <None Include="Resources\Lock_24px.png" />
+    <None Include="Resources\Key_16px.png" />
     <None Include="Resources\Synchronize_32px.png" />
     <None Include="Resources\Checkmark_32px.png" />
     <None Include="Resources\Cancel_32px.png" />

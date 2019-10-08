@@ -6,10 +6,8 @@ using Umhis.Core.Database;
 
 namespace Umhis.Core
 {
-    public class Patient: BaseEntity
+    public class Patient : BaseEntity
     {
-        public string IdNumber { get; set; }
-
         public string Lastname { get; set; }
         public string Firstname { get; set; }
         public string Middlename { get; set; }
@@ -23,10 +21,17 @@ namespace Umhis.Core
         public decimal Weight { get; set; }
         public string Remarks { get; set; }
 
+        public string Fullname => $"{Lastname} , {Firstname} {Middlename}{(NameExtension.Length == 0 ? "" : ", " + NameExtension)}";
 
-        public string Fullname
+        public int Age => DateTime.Today.Year - BirthDate.Year;
+
+        public Patient()
         {
-            get { return Lastname + ", " + Firstname + " " + Middlename; }
+            Department = "";
+            Height = 1;
+            Weight = 1;
+            BirthDate = new DateTime(1920, 1, 1);
+            Remarks = "";
         }
 
 
@@ -37,21 +42,18 @@ namespace Umhis.Core
                 using (var cmd = new SqlCommand("Patient_Save", db) { CommandType = CommandType.StoredProcedure })
                 {
                     cmd.Parameters.Add("@Id", SqlDbType.Int).Value = Id;
-
-
-                    cmd.Parameters.Add("@IdNumber"     , SqlDbType.NVarChar, 20).Value        = IdNumber;
-                    cmd.Parameters.Add("@Lastname"     , SqlDbType.NVarChar, 50).Value        = Lastname;
-                    cmd.Parameters.Add("@Firstname"    , SqlDbType.NVarChar, 50).Value        = Firstname;
-                    cmd.Parameters.Add("@Middlename"   , SqlDbType.NVarChar, 50).Value        = Middlename;
+                    cmd.Parameters.Add("@Lastname", SqlDbType.NVarChar, 50).Value             = Lastname;
+                    cmd.Parameters.Add("@Firstname", SqlDbType.NVarChar, 50).Value            = Firstname;
+                    cmd.Parameters.Add("@Middlename", SqlDbType.NVarChar, 50).Value           = Middlename;
                     cmd.Parameters.Add("@NameExtension", SqlDbType.NVarChar, 10).Value        = NameExtension;
-                    cmd.Parameters.Add("@Gender"       , SqlDbType.NVarChar, 10).Value        = Gender;
-                    cmd.Parameters.Add("@BirthDate"    , SqlDbType.Date).Value                = BirthDate;
-                    cmd.Parameters.Add("@Department"   , SqlDbType.NVarChar, 30).Value        = Department;
-                    cmd.Parameters.Add("@BloodType"    , SqlDbType.NVarChar, 5).Value         = BloodType;
-                    cmd.Parameters.Add("@Height"       , SqlDbType.Decimal).Value             = Height;
-                    cmd.Parameters.Add("@Weight"       , SqlDbType.Decimal).Value             = Weight;
-                    cmd.Parameters.Add("@Remarks"      , SqlDbType.NVarChar, 200).Value       = Remarks;
-                    cmd.Parameters.Add("@Encoder"      , SqlDbType.NVarChar, 40).Value        = currentUser;
+                    cmd.Parameters.Add("@Gender", SqlDbType.NVarChar, 10).Value               = Gender;
+                    cmd.Parameters.Add("@BirthDate", SqlDbType.Date).Value                    = BirthDate;
+                    cmd.Parameters.Add("@Department", SqlDbType.NVarChar, 30).Value           = Department;
+                    cmd.Parameters.Add("@BloodType", SqlDbType.NVarChar, 5).Value             = BloodType;
+                    cmd.Parameters.Add("@Height", SqlDbType.Decimal).Value                    = Height;
+                    cmd.Parameters.Add("@Weight", SqlDbType.Decimal).Value                    = Weight;
+                    cmd.Parameters.Add("@Remarks", SqlDbType.NVarChar, 200).Value             = Remarks;
+                    cmd.Parameters.Add("@Encoder", SqlDbType.NVarChar, 40).Value              = currentUser;
 
 
                     using (var reader = cmd.ExecuteReader())
@@ -63,7 +65,7 @@ namespace Umhis.Core
                         RecordInfo.CreatedBy    = reader.GetStringFrom("CreatedBy");
                         RecordInfo.ModifiedDate = reader.GetDateTimeFrom("Modified");
                         RecordInfo.ModifiedBy   = reader.GetStringFrom("ModifiedBy");
-                        
+
                     }
                 }
             }
@@ -92,38 +94,37 @@ namespace Umhis.Core
         }
 
 
-        public bool LoadById(int id)
+        public bool LoadById(int idNumber)
         {
             using (var db = SqlServer.CreateAndOpenConnection())
             {
                 using (var cmd = new SqlCommand("Patient_OpenById", db) { CommandType = CommandType.StoredProcedure })
                 {
-                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = Id;
+                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = idNumber;
 
 
                     using (var reader = cmd.ExecuteReader())
                     {
                         if (!reader.Read()) return false;
 
-                        Id = reader.GetInt32From("Id");
-                        IdNumber = reader.GetStringFrom("IdNumber");
-                        Lastname = reader.GetStringFrom("Lastname");
-                        Firstname = reader.GetStringFrom("Firstname");
-                        Middlename = reader.GetStringFrom("Middlename");
+                        Id            = reader.GetInt32From("Id");
+                        Lastname      = reader.GetStringFrom("Lastname");
+                        Firstname     = reader.GetStringFrom("Firstname");
+                        Middlename    = reader.GetStringFrom("Middlename");
                         NameExtension = reader.GetStringFrom("NameExtension");
-                        Gender = reader.GetStringFrom("Gender");
-                        BirthDate = reader.GetDateTimeFrom("BirthDate");
-                        Department = reader.GetStringFrom("Department");
-                        BloodType = reader.GetStringFrom("BloodType");
-                        Height = reader.GetDecimalFrom("Height");
-                        Weight = reader.GetDecimalFrom("Weight");
-                        Remarks = reader.GetStringFrom("Remarks");
+                        Gender        = reader.GetStringFrom("Gender");
+                        BirthDate     = reader.GetDateTimeFrom("BirthDate");
+                        Department    = reader.GetStringFrom("Department");
+                        BloodType     = reader.GetStringFrom("BloodType");
+                        Height        = reader.GetDecimalFrom("Height");
+                        Weight        = reader.GetDecimalFrom("Weight");
+                        Remarks       = reader.GetStringFrom("Remarks");
 
-                        RecordInfo.CreatedDate = reader.GetDateTimeFrom("Created");
-                        RecordInfo.ModifiedDate = reader.GetDateTimeFrom("Modified");
-                        RecordInfo.CreatedBy = reader.GetStringFrom("CreatedBy");
-                        RecordInfo.ModifiedBy = reader.GetStringFrom("ModifiedBy");
-                        
+                        RecordInfo.LoadValuesFrom(reader);
+                        //RecordInfo.CreatedDate  = reader.GetDateTimeFrom("Created");
+                        //RecordInfo.ModifiedDate = reader.GetDateTimeFrom("Modified");
+                        //RecordInfo.CreatedBy    = reader.GetStringFrom("CreatedBy");
+                        //RecordInfo.ModifiedBy   = reader.GetStringFrom("ModifiedBy");
                     }
                 }
             }
@@ -146,28 +147,27 @@ namespace Umhis.Core
 
                         while (reader.Read())
                         {
-                            var item = new Patient();
+                            var item = new Patient
+                            {
+                                Id            = reader.GetInt32From("Id"),
+                                Lastname      = reader.GetStringFrom("Lastname"),
+                                Firstname     = reader.GetStringFrom("Firstname"),
+                                Middlename    = reader.GetStringFrom("Middlename"),
+                                NameExtension = reader.GetStringFrom("NameExtension"),
+                                Gender        = reader.GetStringFrom("Gender"),
+                                BirthDate     = reader.GetDateTimeFrom("BirthDate"),
+                                Department    = reader.GetStringFrom("Department"),
+                                BloodType     = reader.GetStringFrom("BloodType"),
+                                Height        = reader.GetDecimalFrom("Height"),
+                                Weight        = reader.GetDecimalFrom("Weight"),
+                                Remarks       = reader.GetStringFrom("Remarks")
+                            };
 
-                            item.Id = reader.GetInt32From("Id");
-                            item.IdNumber = reader.GetStringFrom("IdNumber");
-
-                            item.Lastname = reader.GetStringFrom("Lastname");
-                            item.Firstname = reader.GetStringFrom("Firstname");
-                            item.Middlename = reader.GetStringFrom("Middlename");
-                            item.NameExtension = reader.GetStringFrom("NameExtension");
-
-                            item.Gender = reader.GetStringFrom("Gender");
-                            item.BirthDate = reader.GetDateTimeFrom("BirthDate");
-                            item.Department = reader.GetStringFrom("Department");
-                            item.BloodType = reader.GetStringFrom("BloodType");
-                            item.Height = reader.GetDecimalFrom("Height");
-                            item.Weight = reader.GetDecimalFrom("Weight");
-                            item.Remarks = reader.GetStringFrom("Remarks");
-
-                            item.RecordInfo.CreatedDate = reader.GetDateTimeFrom("Created");
-                            item.RecordInfo.ModifiedDate = reader.GetDateTimeFrom("Modified");
-                            item.RecordInfo.CreatedBy = reader.GetStringFrom("CreatedBy");
-                            item.RecordInfo.ModifiedBy = reader.GetStringFrom("ModifiedBy");
+                            item.RecordInfo.LoadValuesFrom(reader);
+                            //item.RecordInfo.CreatedDate  = reader.GetDateTimeFrom("Created");
+                            //item.RecordInfo.ModifiedDate = reader.GetDateTimeFrom("Modified");
+                            //item.RecordInfo.CreatedBy    = reader.GetStringFrom("CreatedBy");
+                            //item.RecordInfo.ModifiedBy   = reader.GetStringFrom("ModifiedBy");
 
                             itemCollection.Add(item);
                         }
@@ -176,6 +176,17 @@ namespace Umhis.Core
             }
 
             return itemCollection;
+        }
+
+        public static void DeleteAll()
+        {
+            using (var db = SqlServer.CreateAndOpenConnection())
+            {
+                using (var cmd = new SqlCommand("Delete from Patient", db))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

@@ -2,18 +2,24 @@
 
 namespace Umhis.Core.Database
 {
-    internal static class SqlServer
+    public static class SqlServer
     {
+        public static SqlConnectionStringBuilder ConnectionBuilder;
+
+
         public static SqlConnection CreateAndOpenConnection()
         {
-            var builder = new SqlConnectionStringBuilder()
+            if (ConnectionBuilder == null)
             {
-                DataSource = "(LocalDB)\\MSSQLLocalDB",
-                AttachDBFilename = "|DataDirectory|\\Data\\database.mdf",
-                IntegratedSecurity = true,
-            };
+                ConnectionBuilder = new SqlConnectionStringBuilder()
+                {
+                    DataSource = "(LocalDB)\\MSSQLLocalDB",
+                    AttachDBFilename = "|DataDirectory|\\Data\\database.mdf",
+                    IntegratedSecurity = true,
+                };
+            }
 
-            var db = new SqlConnection(builder.ToString());
+            var db = new SqlConnection(ConnectionBuilder.ToString());
 
             db.Open();
 

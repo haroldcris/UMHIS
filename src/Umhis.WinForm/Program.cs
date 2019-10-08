@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Umhis.Forms;
+using Umhis.Forms.Account;
 
 namespace Umhis
 {
@@ -14,6 +15,18 @@ namespace Umhis
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            using (var backForm = new BackgroundForm())
+            {
+                backForm.Show();
+
+                using (var login = new LogInDialog())
+                {
+                    if (login.ShowDialog() != DialogResult.OK) return;
+                }
+            }
+
+            //Application.Run(new Form1());
             Application.Run(new MainForm());
         }
     }

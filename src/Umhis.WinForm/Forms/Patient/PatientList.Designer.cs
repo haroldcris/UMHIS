@@ -31,16 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientList));
             this.Grid = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.lblStatus = new System.Windows.Forms.Label();
             this.BtnAdd = new System.Windows.Forms.ToolStripButton();
             this.BtnEdit = new System.Windows.Forms.ToolStripButton();
             this.BtnRefresh = new System.Windows.Forms.ToolStripButton();
-            this.BtnDelete = new System.Windows.Forms.ToolStripButton();
-            this.BtnClose = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnClose = new System.Windows.Forms.ToolStripButton();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Grid
@@ -49,12 +51,12 @@
             this.Grid.AllowUserToDeleteRows = false;
             this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Grid.Location = new System.Drawing.Point(0, 54);
+            this.Grid.Location = new System.Drawing.Point(5, 114);
             this.Grid.Name = "Grid";
             this.Grid.ReadOnly = true;
-            this.Grid.Size = new System.Drawing.Size(764, 436);
+            this.Grid.Size = new System.Drawing.Size(844, 472);
             this.Grid.TabIndex = 0;
-            this.Grid.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.Grid_RowsAdded);
+            this.Grid.DoubleClick += new System.EventHandler(this.Grid_DoubleClick);
             // 
             // toolStrip1
             // 
@@ -67,25 +69,11 @@
             this.BtnDelete,
             this.toolStripSeparator1,
             this.BtnClose});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(5, 60);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(764, 54);
+            this.toolStrip1.Size = new System.Drawing.Size(844, 54);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(50, 87);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(80, 13);
-            this.lblStatus.TabIndex = 2;
-            this.lblStatus.Text = "Loading Data...";
             // 
             // BtnAdd
             // 
@@ -117,6 +105,11 @@
             this.BtnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 54);
+            // 
             // BtnDelete
             // 
             this.BtnDelete.Image = global::Umhis.Properties.Resources.DeleteBin_32px;
@@ -125,6 +118,12 @@
             this.BtnDelete.Size = new System.Drawing.Size(44, 51);
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
             // 
             // BtnClose
             // 
@@ -136,32 +135,46 @@
             this.BtnClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // toolStripSeparator2
+            // lblStatus
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 54);
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(28, 145);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(80, 13);
+            this.lblStatus.TabIndex = 2;
+            this.lblStatus.Text = "Loading Data...";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Umhis.Properties.Resources.Team_40px;
+            this.pictureBox1.Location = new System.Drawing.Point(143, 16);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(45, 41);
+            this.pictureBox1.TabIndex = 35;
+            this.pictureBox1.TabStop = false;
             // 
             // PatientList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 490);
+            this.ClientSize = new System.Drawing.Size(854, 606);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.Grid);
             this.Controls.Add(this.toolStrip1);
-            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PatientList";
+            this.Padding = new System.Windows.Forms.Padding(5, 60, 5, 20);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Patient List";
-            this.Load += new System.EventHandler(this.Form_Load);
             this.Shown += new System.EventHandler(this.Form_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +192,6 @@
         private System.Windows.Forms.ToolStripButton BtnClose;
         private System.Windows.Forms.ToolStripButton BtnRefresh;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
