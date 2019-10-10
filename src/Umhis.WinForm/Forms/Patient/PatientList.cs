@@ -1,9 +1,9 @@
-﻿using MetroFramework.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
-namespace Umhis.Forms.Patient
+namespace Umhis.Forms
 {
     public partial class PatientList : MetroForm
     {
@@ -25,8 +25,6 @@ namespace Umhis.Forms.Patient
             CreateGridColumn("Age", "Age");
 
             Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            Grid.Sort(Grid.Columns["Name"], System.ComponentModel.ListSortDirection.Ascending);
         }
 
         private void CreateGridColumn(string name, string header, int colWidth = 50)
@@ -75,7 +73,7 @@ namespace Umhis.Forms.Patient
                     DisplayToGridRow(item, Grid.Rows[rowIndex]);
                 }
 
-                Grid.Sort(Grid.Columns["Name"], System.ComponentModel.ListSortDirection.Ascending);
+                Grid.Sort(Grid.Columns["Name"] ?? throw new InvalidOperationException(), System.ComponentModel.ListSortDirection.Ascending);
             }
             catch (Exception ex)
             {
@@ -120,7 +118,7 @@ namespace Umhis.Forms.Patient
             using (var frm = new PatientInfoDialog())
             {
                 frm.PatientItem = newItem;
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
 
                 DisplayToGridRow(newItem, Grid.Rows[Grid.Rows.Add()]);
             }
@@ -136,7 +134,7 @@ namespace Umhis.Forms.Patient
             using (var frm = new PatientInfoDialog())
             {
                 frm.PatientItem = item;
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
 
                 DisplayToGridRow(item, Grid.CurrentRow);
             }

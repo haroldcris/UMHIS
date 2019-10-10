@@ -38,7 +38,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnClose = new System.Windows.Forms.ToolStripButton();
             this.Grid = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -69,6 +71,7 @@
             this.BtnAdd.Size = new System.Drawing.Size(36, 51);
             this.BtnAdd.Text = "Add";
             this.BtnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // BtnEdit
             // 
@@ -78,6 +81,7 @@
             this.BtnEdit.Size = new System.Drawing.Size(36, 51);
             this.BtnEdit.Text = "Edit";
             this.BtnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // BtnRefresh
             // 
@@ -87,6 +91,7 @@
             this.BtnRefresh.Size = new System.Drawing.Size(50, 51);
             this.BtnRefresh.Text = "Refresh";
             this.BtnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
             // toolStripSeparator2
             // 
@@ -101,6 +106,7 @@
             this.BtnDelete.Size = new System.Drawing.Size(44, 51);
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // toolStripSeparator1
             // 
@@ -115,18 +121,28 @@
             this.BtnClose.Size = new System.Drawing.Size(40, 51);
             this.BtnClose.Text = "Close";
             this.BtnClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // Grid
             // 
             this.Grid.AllowUserToAddRows = false;
             this.Grid.AllowUserToDeleteRows = false;
             this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1});
             this.Grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Grid.Location = new System.Drawing.Point(5, 114);
             this.Grid.Name = "Grid";
             this.Grid.ReadOnly = true;
             this.Grid.Size = new System.Drawing.Size(491, 515);
             this.Grid.TabIndex = 3;
+            this.Grid.DoubleClick += new System.EventHandler(this.Grid_DoubleClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // pictureBox1
             // 
@@ -137,11 +153,22 @@
             this.pictureBox1.TabIndex = 30;
             this.pictureBox1.TabStop = false;
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(36, 169);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(80, 13);
+            this.lblStatus.TabIndex = 31;
+            this.lblStatus.Text = "Loading Data...";
+            // 
             // AccountList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(501, 649);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Grid);
             this.Controls.Add(this.toolStrip1);
@@ -151,6 +178,7 @@
             this.MinimizeBox = false;
             this.Name = "AccountList";
             this.Padding = new System.Windows.Forms.Padding(5, 60, 5, 20);
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "AccountList";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -173,5 +201,7 @@
         private System.Windows.Forms.ToolStripButton BtnClose;
         private System.Windows.Forms.DataGridView Grid;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
     }
 }

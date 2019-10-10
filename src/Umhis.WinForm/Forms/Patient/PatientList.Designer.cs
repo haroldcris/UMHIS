@@ -1,4 +1,4 @@
-﻿namespace Umhis.Forms.Patient
+﻿namespace Umhis.Forms
 {
     partial class PatientList
     {
@@ -138,7 +138,7 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(28, 145);
+            this.lblStatus.Location = new System.Drawing.Point(39, 182);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(80, 13);
             this.lblStatus.TabIndex = 2;
@@ -157,6 +157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(854, 606);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblStatus);
@@ -167,6 +168,7 @@
             this.MinimizeBox = false;
             this.Name = "PatientList";
             this.Padding = new System.Windows.Forms.Padding(5, 60, 5, 20);
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Patient List";

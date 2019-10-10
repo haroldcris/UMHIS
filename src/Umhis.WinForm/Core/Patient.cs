@@ -25,6 +25,8 @@ namespace Umhis.Core
 
         public int Age => DateTime.Today.Year - BirthDate.Year;
 
+        public ICollection<TreatmentHistory> TreatmentHistoryItems { get; set; }
+
         public Patient()
         {
             Department = "";
@@ -32,6 +34,8 @@ namespace Umhis.Core
             Weight = 1;
             BirthDate = new DateTime(1920, 1, 1);
             Remarks = "";
+
+            TreatmentHistoryItems = new List<TreatmentHistory>();
         }
 
 
@@ -55,7 +59,6 @@ namespace Umhis.Core
                     cmd.Parameters.Add("@Remarks", SqlDbType.NVarChar, 200).Value             = Remarks;
                     cmd.Parameters.Add("@Encoder", SqlDbType.NVarChar, 40).Value              = currentUser;
 
-
                     using (var reader = cmd.ExecuteReader())
                     {
                         if (!reader.Read()) return false;
@@ -67,6 +70,14 @@ namespace Umhis.Core
                         RecordInfo.ModifiedBy   = reader.GetStringFrom("ModifiedBy");
 
                     }
+                }
+
+
+                //Save SubItem
+                foreach (var item in TreatmentHistoryItems)
+                {
+                    item.PatientId = Id;
+                    item.Save(currentUser, db);
                 }
             }
 
@@ -187,6 +198,76 @@ namespace Umhis.Core
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+
+        public static IEnumerable<PatientSearchResult> SearchByName(string name)
+        {
+            var itemCollection = new List<PatientSearchResult>();
+
+            using (var db = SqlServer.CreateAndOpenConnection())
+            {
+                using (var cmd = new SqlCommand("Patient_Search", db) { CommandType = CommandType.StoredProcedure })
+                {
+                    cmd.Parameters.Add("@Criteria", SqlDbType.NVarChar, 100).Value = name;
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            var item = new PatientSearchResult
+                            {
+                                Id            = reader.GetInt32From("Id"),
+                                Lastname      = reader.GetStringFrom("Lastname"),
+                                Firstname     = reader.GetStringFrom("Firstname"),
+                                Middlename    = reader.GetStringFrom("Middlename"),
+                                NameExtension = reader.GetStringFrom("NameExtension"),
+                                Gender        = reader.GetStringFrom("Gender"),
+                                BirthDate     = reader.GetDateTimeFrom("BirthDate"),
+                            };
+                            itemCollection.Add(item);
+                        }
+                    }
+                }
+            }
+
+            return itemCollection;
+        }
+
+        public void LoadTreatmentHistory()
+        {
+            TreatmentHistoryItems.Clear();
+
+            using (var db = SqlServer.CreateAndOpenConnection())
+            {
+                using (var cmd = new SqlCommand("Treatment_Open", db) { CommandType = CommandType.StoredProcedure })
+                {
+                    cmd.Parameters.Add("@PatientId", SqlDbType.Int).Value = Id;
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            var item = new TreatmentHistory();
+
+                            item.Id                      = reader.GetInt32From("Id");
+                            item.DateTreated             = reader.GetDateTimeFrom("DateTreated");
+                            item.PatientId               = reader.GetInt32From("PatientId");
+                            item.Condition               = reader.GetStringFrom("Condition");
+                            item.Treatment               = reader.GetStringFrom("Treatment");
+                            item.RecordInfo.CreatedDate  = reader.GetDateTimeFrom("Created");
+                            item.RecordInfo.ModifiedDate = reader.GetDateTimeFrom("Modified");
+                            item.RecordInfo.CreatedBy    = reader.GetStringFrom("CreatedBy");
+                            item.RecordInfo.ModifiedBy   = reader.GetStringFrom("ModifiedBy");
+
+                            TreatmentHistoryItems.Add(item);
+                        }
+                    }
+                }
+            }
+
         }
     }
 }

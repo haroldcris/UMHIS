@@ -22,7 +22,7 @@ namespace Umhis
 
                 using (var login = new LogInDialog())
                 {
-                    if (login.ShowDialog() != DialogResult.OK) return;
+                    if (login.ShowDialog(backForm) != DialogResult.OK) return;
                 }
             }
 

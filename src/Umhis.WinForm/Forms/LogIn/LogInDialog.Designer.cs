@@ -33,9 +33,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.LnkCancel = new System.Windows.Forms.LinkLabel();
             this.lblError = new System.Windows.Forms.Label();
+            this.panelConnecting = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtPassword = new MetroFramework.Controls.MetroTextBox();
             this.txtUsername = new MetroFramework.Controls.MetroTextBox();
             this.BtnLogIn = new System.Windows.Forms.Button();
+            this.panelConnecting.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,13 +76,43 @@
             // 
             // lblError
             // 
+            this.lblError.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblError.ForeColor = System.Drawing.Color.Tomato;
             this.lblError.Location = new System.Drawing.Point(17, 199);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(190, 58);
             this.lblError.TabIndex = 6;
-            this.lblError.Text = "  ";
+            this.lblError.Text = "Use admin  / admin";
             this.lblError.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panelConnecting
+            // 
+            this.panelConnecting.Controls.Add(this.pictureBox1);
+            this.panelConnecting.Controls.Add(this.label3);
+            this.panelConnecting.Location = new System.Drawing.Point(42, 215);
+            this.panelConnecting.Name = "panelConnecting";
+            this.panelConnecting.Size = new System.Drawing.Size(142, 33);
+            this.panelConnecting.TabIndex = 8;
+            this.panelConnecting.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Umhis.Properties.Resources.ajax_loader_fb;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(18, 14);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(30, 7);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 15);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Connecting...";
             // 
             // txtPassword
             // 
@@ -153,10 +188,10 @@
             // 
             this.BtnLogIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnLogIn.Image = global::Umhis.Properties.Resources.Login_24px;
-            this.BtnLogIn.Location = new System.Drawing.Point(67, 268);
+            this.BtnLogIn.Location = new System.Drawing.Point(45, 268);
             this.BtnLogIn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnLogIn.Name = "BtnLogIn";
-            this.BtnLogIn.Size = new System.Drawing.Size(91, 32);
+            this.BtnLogIn.Size = new System.Drawing.Size(135, 32);
             this.BtnLogIn.TabIndex = 4;
             this.BtnLogIn.Text = "Log In";
             this.BtnLogIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -170,6 +205,7 @@
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.CancelButton = this.LnkCancel;
             this.ClientSize = new System.Drawing.Size(225, 347);
+            this.Controls.Add(this.panelConnecting);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.lblError);
@@ -183,8 +219,12 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LogInDialog";
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Log In";
+            this.panelConnecting.ResumeLayout(false);
+            this.panelConnecting.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,5 +238,8 @@
         private System.Windows.Forms.Label lblError;
         private MetroFramework.Controls.MetroTextBox txtUsername;
         private MetroFramework.Controls.MetroTextBox txtPassword;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panelConnecting;
+        private System.Windows.Forms.Label label3;
     }
 }

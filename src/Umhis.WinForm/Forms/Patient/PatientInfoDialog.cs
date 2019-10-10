@@ -1,8 +1,9 @@
-﻿using MetroFramework.Forms;
-using System;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
-namespace Umhis.Forms.Patient
+namespace Umhis.Forms
 {
     public partial class PatientInfoDialog : MetroForm
     {
@@ -81,8 +82,6 @@ namespace Umhis.Forms.Patient
 
         private bool HasBrokenRules()
         {
-            errorProvider1.Clear();
-
             if (txtId.Text == "")
                 return ShowValidationError(txtId, "Id is required");
 
@@ -113,11 +112,19 @@ namespace Umhis.Forms.Patient
         }
 
 
-        private bool ShowValidationError(Control ctrl, string message)
+        private bool ShowValidationError(Control ctrl, string errorMessage)
         {
-            errorProvider1.SetError(ctrl, message);
+            ShowError(ctrl, errorMessage);
             ctrl.Focus();
             return true;
+        }
+
+        private async void ShowError(Control control, string errorMessage)
+        {
+            panelError.Visible = true;
+            lblError.Text = errorMessage;
+            await Task.Delay(3000);
+            panelError.Visible = false;
         }
 
 

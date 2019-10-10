@@ -1,6 +1,5 @@
 ﻿using System.Windows.Forms;
 using Umhis.Forms.Account;
-using Umhis.Forms.Patient;
 
 namespace Umhis.Forms
 {
@@ -11,6 +10,11 @@ namespace Umhis.Forms
             InitializeComponent();
 
             InitializeGrid();
+
+            btnUser.Text = $"Welcome {AppSession.CurrentUser.DisplayName} [{AppSession.CurrentUser.SecurityLevel}]";
+
+            BtnDoctor.Visible = false;
+            BtnMedicine.Visible = false;
         }
 
         private void InitializeGrid()
@@ -18,9 +22,7 @@ namespace Umhis.Forms
             Grid.Columns.Clear();
             Grid.AutoGenerateColumns =false;
 
-            //Grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-            CreateGridColumn("Id", "Id",50);
+            CreateGridColumn("Id", "Id", 50);
             CreateGridColumn("CaseNum", "Case Number", 50);
             CreateGridColumn("Name", "Patient Name", 250);
             CreateGridColumn("Department", "Department", 100).FillWeight = 100;
@@ -28,10 +30,8 @@ namespace Umhis.Forms
             CreateGridColumn("Remarks", "Remarks", 400);
 
             Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
             Grid.Rows.AddCopies(0, 10);
         }
-
 
         private DataGridViewColumn CreateGridColumn(string name, string header, int colWidth = 50)
         {
@@ -65,6 +65,32 @@ namespace Umhis.Forms
             using (var frm = new AccountList())
             {
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
+            }
+        }
+
+        private void BtnOpenPatientInfo_Click(object sender, System.EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+
+            using (var frm = new PatientSearchDialog())
+            {
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+
+                using (var patientForm = new PatientInfoDialog())
+                {
+                    patientForm.PatientItem = frm.SelectedPatient;
+                    patientForm.ShowDialog(this);
+                }
+            }
+        }
+
+        private void BtnChangePassword_Click(object sender, System.EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+
+            using (var frm = new ChangePasswordDialog())
+            {
+                frm.ShowDialog(this);
             }
         }
     }

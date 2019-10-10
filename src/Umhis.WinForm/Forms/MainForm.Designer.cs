@@ -33,26 +33,26 @@
             this.ribbon1 = new System.Windows.Forms.Ribbon();
             this.ribbonTab1 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanelCase = new System.Windows.Forms.RibbonPanel();
-            this.ribbonPanelHome = new System.Windows.Forms.RibbonPanel();
-            this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
-            this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.Grid = new System.Windows.Forms.DataGridView();
-            this.ribbonLabel2 = new System.Windows.Forms.RibbonLabel();
             this.BtnNewCase = new System.Windows.Forms.RibbonButton();
             this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
+            this.ribbonPanelHome = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
             this.BtnOpenPatientInfo = new System.Windows.Forms.RibbonButton();
             this.BtnPatientMasterList = new System.Windows.Forms.RibbonButton();
             this.BtnDoctor = new System.Windows.Forms.RibbonButton();
             this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
             this.BtnMedicine = new System.Windows.Forms.RibbonButton();
+            this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
             this.BtnUserAccounts = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton5 = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton6 = new System.Windows.Forms.RibbonButton();
+            this.BtnChangePassword = new System.Windows.Forms.RibbonButton();
+            this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
+            this.btnUser = new System.Windows.Forms.RibbonButton();
             this.ribbonLabel1 = new System.Windows.Forms.RibbonLabel();
+            this.ribbonLabel2 = new System.Windows.Forms.RibbonLabel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.Grid = new System.Windows.Forms.DataGridView();
             this.ribbonDescriptionMenuItem1 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
@@ -103,70 +103,6 @@
             this.ribbonPanelCase.Name = "ribbonPanelCase";
             this.ribbonPanelCase.Text = "Medical Case";
             // 
-            // ribbonPanelHome
-            // 
-            this.ribbonPanelHome.ButtonMoreVisible = false;
-            this.ribbonPanelHome.Items.Add(this.ribbonButton1);
-            this.ribbonPanelHome.Items.Add(this.BtnDoctor);
-            this.ribbonPanelHome.Items.Add(this.BtnMedicine);
-            this.ribbonPanelHome.Name = "ribbonPanelHome";
-            this.ribbonPanelHome.Text = "Master List";
-            // 
-            // ribbonPanel1
-            // 
-            this.ribbonPanel1.ButtonMoreVisible = false;
-            this.ribbonPanel1.Items.Add(this.BtnUserAccounts);
-            this.ribbonPanel1.Items.Add(this.ribbonButton5);
-            this.ribbonPanel1.Name = "ribbonPanel1";
-            this.ribbonPanel1.Text = "Security";
-            // 
-            // ribbonPanel2
-            // 
-            this.ribbonPanel2.Items.Add(this.ribbonButton6);
-            this.ribbonPanel2.Items.Add(this.ribbonLabel1);
-            this.ribbonPanel2.Items.Add(this.ribbonLabel2);
-            this.ribbonPanel2.Name = "ribbonPanel2";
-            this.ribbonPanel2.Text = "Current Session";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.BackColor = System.Drawing.Color.SteelBlue;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 554);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(762, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(39, 17);
-            this.toolStripStatusLabel1.Text = "Ready";
-            // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // Grid
-            // 
-            this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Grid.Location = new System.Drawing.Point(0, 154);
-            this.Grid.Name = "Grid";
-            this.Grid.Size = new System.Drawing.Size(762, 400);
-            this.Grid.TabIndex = 2;
-            this.Grid.VirtualMode = true;
-            this.Grid.Visible = false;
-            // 
-            // ribbonLabel2
-            // 
-            this.ribbonLabel2.Name = "ribbonLabel2";
-            this.ribbonLabel2.Text = "   ";
-            // 
             // BtnNewCase
             // 
             this.BtnNewCase.Image = global::Umhis.Properties.Resources.AddFile_32px;
@@ -184,6 +120,15 @@
             this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
             this.ribbonButton2.Text = "Case MasterList";
             this.ribbonButton2.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
+            // 
+            // ribbonPanelHome
+            // 
+            this.ribbonPanelHome.ButtonMoreVisible = false;
+            this.ribbonPanelHome.Items.Add(this.ribbonButton1);
+            this.ribbonPanelHome.Items.Add(this.BtnDoctor);
+            this.ribbonPanelHome.Items.Add(this.BtnMedicine);
+            this.ribbonPanelHome.Name = "ribbonPanelHome";
+            this.ribbonPanelHome.Text = "Master List";
             // 
             // ribbonButton1
             // 
@@ -205,6 +150,7 @@
             this.BtnOpenPatientInfo.Name = "BtnOpenPatientInfo";
             this.BtnOpenPatientInfo.SmallImage = global::Umhis.Properties.Resources.FindUserMale_40px;
             this.BtnOpenPatientInfo.Text = "Open Patient Info";
+            this.BtnOpenPatientInfo.Click += new System.EventHandler(this.BtnOpenPatientInfo_Click);
             // 
             // BtnPatientMasterList
             // 
@@ -242,6 +188,14 @@
             this.BtnMedicine.SmallImage = ((System.Drawing.Image)(resources.GetObject("BtnMedicine.SmallImage")));
             this.BtnMedicine.Text = "Treatment";
             // 
+            // ribbonPanel1
+            // 
+            this.ribbonPanel1.ButtonMoreVisible = false;
+            this.ribbonPanel1.Items.Add(this.BtnUserAccounts);
+            this.ribbonPanel1.Items.Add(this.BtnChangePassword);
+            this.ribbonPanel1.Name = "ribbonPanel1";
+            this.ribbonPanel1.Text = "Security";
+            // 
             // BtnUserAccounts
             // 
             this.BtnUserAccounts.Image = global::Umhis.Properties.Resources.Password_40px;
@@ -251,24 +205,33 @@
             this.BtnUserAccounts.Text = "User Accounts";
             this.BtnUserAccounts.Click += new System.EventHandler(this.BtnUserAccounts_Click);
             // 
-            // ribbonButton5
+            // BtnChangePassword
             // 
-            this.ribbonButton5.Image = global::Umhis.Properties.Resources.Key_40px;
-            this.ribbonButton5.LargeImage = global::Umhis.Properties.Resources.Key_40px;
-            this.ribbonButton5.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Large;
-            this.ribbonButton5.Name = "ribbonButton5";
-            this.ribbonButton5.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.SmallImage")));
-            this.ribbonButton5.Text = "Change Password...";
+            this.BtnChangePassword.Image = global::Umhis.Properties.Resources.Key_40px;
+            this.BtnChangePassword.LargeImage = global::Umhis.Properties.Resources.Key_40px;
+            this.BtnChangePassword.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Large;
+            this.BtnChangePassword.Name = "BtnChangePassword";
+            this.BtnChangePassword.SmallImage = ((System.Drawing.Image)(resources.GetObject("BtnChangePassword.SmallImage")));
+            this.BtnChangePassword.Text = "Change Password...";
+            this.BtnChangePassword.Click += new System.EventHandler(this.BtnChangePassword_Click);
             // 
-            // ribbonButton6
+            // ribbonPanel2
             // 
-            this.ribbonButton6.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.Image")));
-            this.ribbonButton6.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.LargeImage")));
-            this.ribbonButton6.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
-            this.ribbonButton6.Name = "ribbonButton6";
-            this.ribbonButton6.SmallImage = global::Umhis.Properties.Resources.MaleUser_16px;
-            this.ribbonButton6.Style = System.Windows.Forms.RibbonButtonStyle.DropDown;
-            this.ribbonButton6.Text = "Welcome User";
+            this.ribbonPanel2.Items.Add(this.btnUser);
+            this.ribbonPanel2.Items.Add(this.ribbonLabel1);
+            this.ribbonPanel2.Items.Add(this.ribbonLabel2);
+            this.ribbonPanel2.Name = "ribbonPanel2";
+            this.ribbonPanel2.Text = "Current Session";
+            // 
+            // btnUser
+            // 
+            this.btnUser.Image = ((System.Drawing.Image)(resources.GetObject("btnUser.Image")));
+            this.btnUser.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUser.LargeImage")));
+            this.btnUser.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
+            this.btnUser.MinSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
+            this.btnUser.Name = "btnUser";
+            this.btnUser.SmallImage = global::Umhis.Properties.Resources.MaleUser_16px;
+            this.btnUser.Text = "Welcome User";
             // 
             // ribbonLabel1
             // 
@@ -277,6 +240,45 @@
             this.ribbonLabel1.Name = "ribbonLabel1";
             this.ribbonLabel1.Text = "   ";
             this.ribbonLabel1.Value = "  ";
+            // 
+            // ribbonLabel2
+            // 
+            this.ribbonLabel2.Name = "ribbonLabel2";
+            this.ribbonLabel2.Text = "   ";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.BackColor = System.Drawing.Color.SteelBlue;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 554);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(762, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(39, 17);
+            this.toolStripStatusLabel1.Text = "Ready";
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // Grid
+            // 
+            this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Grid.Location = new System.Drawing.Point(0, 154);
+            this.Grid.Name = "Grid";
+            this.Grid.Size = new System.Drawing.Size(762, 400);
+            this.Grid.TabIndex = 2;
+            this.Grid.VirtualMode = true;
+            this.Grid.Visible = false;
             // 
             // ribbonDescriptionMenuItem1
             // 
@@ -329,9 +331,9 @@
         private System.Windows.Forms.RibbonButton ribbonButton2;
         private System.Windows.Forms.RibbonPanel ribbonPanel1;
         private System.Windows.Forms.RibbonButton BtnUserAccounts;
-        private System.Windows.Forms.RibbonButton ribbonButton5;
+        private System.Windows.Forms.RibbonButton BtnChangePassword;
         private System.Windows.Forms.RibbonPanel ribbonPanel2;
-        private System.Windows.Forms.RibbonButton ribbonButton6;
+        private System.Windows.Forms.RibbonButton btnUser;
         private System.Windows.Forms.RibbonDescriptionMenuItem ribbonDescriptionMenuItem1;
         private System.Windows.Forms.RibbonLabel ribbonLabel1;
         private System.Windows.Forms.RibbonLabel ribbonLabel2;

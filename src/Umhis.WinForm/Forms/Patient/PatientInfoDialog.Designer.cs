@@ -1,4 +1,4 @@
-﻿namespace Umhis.Forms.Patient
+﻿namespace Umhis.Forms
 {
     partial class PatientInfoDialog
     {
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientInfoDialog));
             this.label1 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -59,19 +58,20 @@
             this.LnkCancel = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.panelError = new System.Windows.Forms.Panel();
+            this.lblError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.panelError.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(67, 76);
+            this.label1.Location = new System.Drawing.Point(157, 100);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 17);
             this.label1.TabIndex = 0;
@@ -79,7 +79,7 @@
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(120, 74);
+            this.txtId.Location = new System.Drawing.Point(210, 98);
             this.txtId.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
@@ -140,6 +140,20 @@
             // cboNameExtension
             // 
             this.cboNameExtension.FormattingEnabled = true;
+            this.cboNameExtension.Items.AddRange(new object[] {
+            "",
+            "Sr.",
+            "Jr.",
+            "I",
+            "II",
+            "III",
+            "IV",
+            "V",
+            "VI",
+            "VII",
+            "VIII",
+            "IX",
+            "X"});
             this.cboNameExtension.Location = new System.Drawing.Point(98, 120);
             this.cboNameExtension.Name = "cboNameExtension";
             this.cboNameExtension.Size = new System.Drawing.Size(87, 25);
@@ -185,9 +199,18 @@
             // cboDepartment
             // 
             this.cboDepartment.FormattingEnabled = true;
+            this.cboDepartment.Items.AddRange(new object[] {
+            "Engineering",
+            "Education",
+            "Maritime Education",
+            "Criminal Justice",
+            "Arts & Sciences",
+            "Business and Accountancy",
+            "Computer Studies",
+            "Nursing"});
             this.cboDepartment.Location = new System.Drawing.Point(95, 24);
             this.cboDepartment.Name = "cboDepartment";
-            this.cboDepartment.Size = new System.Drawing.Size(170, 25);
+            this.cboDepartment.Size = new System.Drawing.Size(180, 25);
             this.cboDepartment.TabIndex = 11;
             // 
             // label8
@@ -268,7 +291,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(23, 495);
+            this.label11.Location = new System.Drawing.Point(23, 521);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(61, 17);
             this.label11.TabIndex = 22;
@@ -276,7 +299,7 @@
             // 
             // txtRemarks
             // 
-            this.txtRemarks.Location = new System.Drawing.Point(23, 516);
+            this.txtRemarks.Location = new System.Drawing.Point(23, 542);
             this.txtRemarks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(290, 25);
@@ -316,7 +339,7 @@
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnSave.Image = global::Umhis.Properties.Resources.Save_24px;
-            this.BtnSave.Location = new System.Drawing.Point(162, 552);
+            this.BtnSave.Location = new System.Drawing.Point(162, 585);
             this.BtnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(90, 33);
@@ -331,7 +354,7 @@
             this.LnkCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LnkCancel.AutoSize = true;
             this.LnkCancel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LnkCancel.Location = new System.Drawing.Point(258, 561);
+            this.LnkCancel.Location = new System.Drawing.Point(258, 594);
             this.LnkCancel.Name = "LnkCancel";
             this.LnkCancel.Size = new System.Drawing.Size(46, 17);
             this.LnkCancel.TabIndex = 36;
@@ -349,7 +372,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.txtLastname);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(23, 104);
+            this.groupBox2.Location = new System.Drawing.Point(23, 130);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(290, 160);
             this.groupBox2.TabIndex = 38;
@@ -370,22 +393,48 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Location = new System.Drawing.Point(23, 270);
+            this.groupBox1.Location = new System.Drawing.Point(23, 296);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(290, 224);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Personal";
             // 
-            // errorProvider1
+            // panelError
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.panelError.AutoSize = true;
+            this.panelError.BackColor = System.Drawing.Color.Black;
+            this.panelError.Controls.Add(this.lblError);
+            this.panelError.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelError.Location = new System.Drawing.Point(20, 60);
+            this.panelError.Name = "panelError";
+            this.panelError.Size = new System.Drawing.Size(290, 27);
+            this.panelError.TabIndex = 40;
+            this.panelError.Visible = false;
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.BackColor = System.Drawing.Color.Black;
+            this.lblError.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblError.ForeColor = System.Drawing.Color.White;
+            this.lblError.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.lblError.Location = new System.Drawing.Point(0, 0);
+            this.lblError.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.lblError.Name = "lblError";
+            this.lblError.Padding = new System.Windows.Forms.Padding(5);
+            this.lblError.Size = new System.Drawing.Size(184, 27);
+            this.lblError.TabIndex = 34;
+            this.lblError.Text = "Error Message Appear Here";
+            this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // PatientInfoDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 609);
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(330, 642);
+            this.Controls.Add(this.panelError);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.BtnSave);
@@ -403,6 +452,7 @@
             this.MinimizeBox = false;
             this.Name = "PatientInfoDialog";
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Patient Info";
             this.Load += new System.EventHandler(this.Form_Load);
@@ -413,7 +463,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.panelError.ResumeLayout(false);
+            this.panelError.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,6 +500,7 @@
         private System.Windows.Forms.LinkLabel LnkCancel;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Panel panelError;
+        private System.Windows.Forms.Label lblError;
     }
 }
