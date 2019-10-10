@@ -7,20 +7,6 @@ namespace Umhis.Core.Database
     {
         private static readonly DateTime OldDate = new DateTime(1920, 1, 1);
 
-        public static bool HasFieldName(this IDataRecord reader, string fieldName)
-        {
-            try
-            {
-                reader.GetOrdinal(fieldName);
-                return true;
-            }
-            catch (IndexOutOfRangeException)
-            {
-                return false;
-            }
-
-        }
-
         private static bool TryGetOrdinal(this IDataRecord dr, string fieldName, out int colIndex)
         {
             try

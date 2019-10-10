@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using Umhis.Forms.Account;
 
 namespace Umhis.Forms
 {
@@ -15,6 +14,7 @@ namespace Umhis.Forms
 
             BtnDoctor.Visible = false;
             BtnMedicine.Visible = false;
+            BtnCaseMasterList.Visible = false;
         }
 
         private void InitializeGrid()
@@ -22,8 +22,8 @@ namespace Umhis.Forms
             Grid.Columns.Clear();
             Grid.AutoGenerateColumns =false;
 
-            CreateGridColumn("Id", "Id", 50);
-            CreateGridColumn("CaseNum", "Case Number", 50);
+            CreateGridColumn("Id", "Id");
+            CreateGridColumn("CaseNum", "Case Number");
             CreateGridColumn("Name", "Patient Name", 250);
             CreateGridColumn("Department", "Department", 100).FillWeight = 100;
 
@@ -46,7 +46,7 @@ namespace Umhis.Forms
             Cursor.Current = Cursors.WaitCursor;
             using (var frm = new CaseDialog())
             {
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                frm.ShowDialog(this) ;
             }
         }
 
@@ -55,7 +55,7 @@ namespace Umhis.Forms
             Cursor.Current = Cursors.WaitCursor;
             using (var frm = new PatientList())
             {
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                frm.ShowDialog(this);
             }
         }
 
@@ -64,7 +64,7 @@ namespace Umhis.Forms
             Cursor.Current = Cursors.WaitCursor;
             using (var frm = new AccountList())
             {
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                frm.ShowDialog(this) ;
             }
         }
 

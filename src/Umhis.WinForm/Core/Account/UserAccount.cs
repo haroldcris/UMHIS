@@ -48,12 +48,11 @@ namespace Umhis.Core
                 }
             }
 
-
             return true;
         }
 
 
-        public bool Delete(string currentUser)
+        public bool Delete()
         {
             using (var db = SqlServer.CreateAndOpenConnection())
             {

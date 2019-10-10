@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MetroFramework.Forms;
 
 namespace Umhis.Forms
 {
@@ -14,7 +14,7 @@ namespace Umhis.Forms
             InitializeComponent();
         }
 
-        private void Form_Load(object sender, System.EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             if (PatientItem == null) return;
 
@@ -44,7 +44,7 @@ namespace Umhis.Forms
 
 
 
-        private void BtnSave_Click(object sender, System.EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
 
@@ -68,9 +68,8 @@ namespace Umhis.Forms
 
                 PatientItem.Remarks       = txtRemarks.Text;
 
-                PatientItem.Save("encoder"); //Todo: Replace "encoder" with current user
-
-                DialogResult = DialogResult.OK;
+                if (PatientItem.Save(AppSession.CurrentUser.Username))
+                    DialogResult = DialogResult.OK;
 
             }
             catch (Exception ex)
@@ -114,12 +113,12 @@ namespace Umhis.Forms
 
         private bool ShowValidationError(Control ctrl, string errorMessage)
         {
-            ShowError(ctrl, errorMessage);
+            ShowError(errorMessage);
             ctrl.Focus();
             return true;
         }
 
-        private async void ShowError(Control control, string errorMessage)
+        private async void ShowError(string errorMessage)
         {
             panelError.Visible = true;
             lblError.Text = errorMessage;

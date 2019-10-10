@@ -8,7 +8,7 @@ namespace Umhis.Forms
 {
     public partial class AccountInfoDialog : MetroForm
     {
-        public UserAccount UserAccountItem { get; set; }
+        public UserAccount UserAccountItem { private get; set; }
 
         public AccountInfoDialog()
         {
@@ -38,7 +38,7 @@ namespace Umhis.Forms
 
 
 
-        private void BtnSave_Click(object sender, System.EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
 
@@ -56,9 +56,8 @@ namespace Umhis.Forms
                 UserAccountItem.SecurityLevel    = chkAdmin.Checked ? "Admin" : "User";
                 UserAccountItem.Active           = !chkDisabled.Checked;
 
-                UserAccountItem.Save(AppSession.CurrentUser.Username);
-
-                DialogResult = DialogResult.OK;
+                if(UserAccountItem.Save(AppSession.CurrentUser.Username))
+                    DialogResult = DialogResult.OK;
 
             }
             catch (Exception ex)
@@ -96,11 +95,11 @@ namespace Umhis.Forms
         private bool ShowValidationError(Control ctrl, string errorMessage)
         {
             ctrl.Focus();
-            ShowError(ctrl, errorMessage);
+            ShowError( errorMessage);
             return true;
         }
 
-        private async void ShowError(Control control, string errorMessage)
+        private async void ShowError( string errorMessage)
         {
             panelError.Visible = true;
             lblError.Text = errorMessage;

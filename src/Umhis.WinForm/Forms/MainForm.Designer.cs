@@ -34,7 +34,7 @@
             this.ribbonTab1 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanelCase = new System.Windows.Forms.RibbonPanel();
             this.BtnNewCase = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
+            this.BtnCaseMasterList = new System.Windows.Forms.RibbonButton();
             this.ribbonPanelHome = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
             this.BtnOpenPatientInfo = new System.Windows.Forms.RibbonButton();
@@ -99,7 +99,7 @@
             // 
             this.ribbonPanelCase.ButtonMoreVisible = false;
             this.ribbonPanelCase.Items.Add(this.BtnNewCase);
-            this.ribbonPanelCase.Items.Add(this.ribbonButton2);
+            this.ribbonPanelCase.Items.Add(this.BtnCaseMasterList);
             this.ribbonPanelCase.Name = "ribbonPanelCase";
             this.ribbonPanelCase.Text = "Medical Case";
             // 
@@ -112,14 +112,14 @@
             this.BtnNewCase.Text = "New Case";
             this.BtnNewCase.Click += new System.EventHandler(this.BtnNewCase_Click);
             // 
-            // ribbonButton2
+            // BtnCaseMasterList
             // 
-            this.ribbonButton2.Image = global::Umhis.Properties.Resources.Treatment_40px;
-            this.ribbonButton2.LargeImage = global::Umhis.Properties.Resources.Treatment_40px;
-            this.ribbonButton2.Name = "ribbonButton2";
-            this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
-            this.ribbonButton2.Text = "Case MasterList";
-            this.ribbonButton2.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
+            this.BtnCaseMasterList.Image = global::Umhis.Properties.Resources.Treatment_40px;
+            this.BtnCaseMasterList.LargeImage = global::Umhis.Properties.Resources.Treatment_40px;
+            this.BtnCaseMasterList.Name = "BtnCaseMasterList";
+            this.BtnCaseMasterList.SmallImage = ((System.Drawing.Image)(resources.GetObject("BtnCaseMasterList.SmallImage")));
+            this.BtnCaseMasterList.Text = "Case MasterList";
+            this.BtnCaseMasterList.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
             // 
             // ribbonPanelHome
             // 
@@ -328,7 +328,7 @@
         private System.Windows.Forms.RibbonPanel ribbonPanelCase;
         private System.Windows.Forms.RibbonButton BtnNewCase;
         private System.Windows.Forms.DataGridView Grid;
-        private System.Windows.Forms.RibbonButton ribbonButton2;
+        private System.Windows.Forms.RibbonButton BtnCaseMasterList;
         private System.Windows.Forms.RibbonPanel ribbonPanel1;
         private System.Windows.Forms.RibbonButton BtnUserAccounts;
         private System.Windows.Forms.RibbonButton BtnChangePassword;

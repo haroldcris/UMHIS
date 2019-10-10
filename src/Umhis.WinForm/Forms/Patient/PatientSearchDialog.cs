@@ -126,7 +126,6 @@ namespace Umhis.Forms
                 BtnOpen.PerformClick();
                 e.SuppressKeyPress =true;
                 e.Handled = true;
-                return;
             }
         }
 

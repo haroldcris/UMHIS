@@ -25,15 +25,15 @@ namespace Umhis.Core
 
         public int Age => DateTime.Today.Year - BirthDate.Year;
 
-        public ICollection<TreatmentHistory> TreatmentHistoryItems { get; set; }
+        public ICollection<TreatmentHistory> TreatmentHistoryItems { get; }
 
         public Patient()
         {
             Department = "";
-            Height = 1;
-            Weight = 1;
-            BirthDate = new DateTime(1920, 1, 1);
-            Remarks = "";
+            Height     = 1;
+            Weight     = 1;
+            BirthDate  = new DateTime(1920, 1, 1);
+            Remarks    = "";
 
             TreatmentHistoryItems = new List<TreatmentHistory>();
         }
@@ -45,7 +45,7 @@ namespace Umhis.Core
             {
                 using (var cmd = new SqlCommand("Patient_Save", db) { CommandType = CommandType.StoredProcedure })
                 {
-                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = Id;
+                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value                            = Id;
                     cmd.Parameters.Add("@Lastname", SqlDbType.NVarChar, 50).Value             = Lastname;
                     cmd.Parameters.Add("@Firstname", SqlDbType.NVarChar, 50).Value            = Firstname;
                     cmd.Parameters.Add("@Middlename", SqlDbType.NVarChar, 50).Value           = Middlename;
@@ -85,7 +85,7 @@ namespace Umhis.Core
         }
 
 
-        public bool Delete(string currentUser)
+        public bool Delete()
         {
             using (var db = SqlServer.CreateAndOpenConnection())
             {
@@ -224,7 +224,7 @@ namespace Umhis.Core
                                 Middlename    = reader.GetStringFrom("Middlename"),
                                 NameExtension = reader.GetStringFrom("NameExtension"),
                                 Gender        = reader.GetStringFrom("Gender"),
-                                BirthDate     = reader.GetDateTimeFrom("BirthDate"),
+                                //BirthDate     = reader.GetDateTimeFrom("BirthDate"),
                             };
                             itemCollection.Add(item);
                         }

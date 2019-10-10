@@ -7,7 +7,7 @@ namespace Umhis
     {
         private static int _logInAttemptCount;
         private static DateTime _logInAttemptExceedTime;
-        public static UserAccount CurrentUser = null;
+        public static UserAccount CurrentUser  ;
 
         public static bool CreateNewSession(string username, string password, out string errorMessage)
         {

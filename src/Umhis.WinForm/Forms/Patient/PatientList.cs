@@ -154,8 +154,8 @@ namespace Umhis.Forms
 
             try
             {
-                item.Delete("Encoder");
-                Grid.Rows.Remove(Grid.CurrentRow);
+                if(item.Delete())
+                    Grid.Rows.Remove(Grid.CurrentRow);
             }
             catch (Exception ex)
             {

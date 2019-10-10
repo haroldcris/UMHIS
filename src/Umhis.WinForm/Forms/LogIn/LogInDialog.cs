@@ -18,7 +18,7 @@ namespace Umhis.Forms
             Close();
         }
 
-        private async void BtnLogIn_Click(object sender, System.EventArgs e)
+        private async void BtnLogIn_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
             try

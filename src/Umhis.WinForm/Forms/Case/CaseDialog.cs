@@ -65,9 +65,9 @@ namespace Umhis.Forms
                     Remarks     = txtRemarks.Text
                 };
 
-                treatment.Save(AppSession.CurrentUser.Username);
-                _selectedPatient.TreatmentHistoryItems.Add(treatment);
+                if (!treatment.Save(AppSession.CurrentUser.Username)) return;
 
+                _selectedPatient.TreatmentHistoryItems.Add(treatment);
                 Close();
             }
             catch (Exception ex)

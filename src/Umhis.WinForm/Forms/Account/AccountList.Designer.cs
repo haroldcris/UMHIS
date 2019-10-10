@@ -1,4 +1,4 @@
-﻿namespace Umhis.Forms.Account
+﻿namespace Umhis.Forms
 {
     partial class AccountList
     {

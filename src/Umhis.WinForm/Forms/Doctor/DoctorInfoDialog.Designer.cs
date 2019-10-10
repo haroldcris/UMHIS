@@ -1,4 +1,4 @@
-﻿namespace Umhis.Forms.Doctor
+﻿namespace Umhis.Forms
 {
     partial class DoctorInfoDialog
     {

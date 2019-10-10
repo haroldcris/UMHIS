@@ -4,10 +4,10 @@
     {
         public int Id { get; set; }
 
-        public EntityRecordInfo RecordInfo { get; set; }
+        public EntityRecordInfo RecordInfo { get;  }
 
 
-        public BaseEntity()
+        protected BaseEntity()
         {
             RecordInfo = new EntityRecordInfo();
         }

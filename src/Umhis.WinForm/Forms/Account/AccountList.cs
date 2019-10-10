@@ -1,10 +1,10 @@
-﻿using MetroFramework.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 using Umhis.Core;
 
-namespace Umhis.Forms.Account
+namespace Umhis.Forms
 {
     public partial class AccountList : MetroForm
     {
@@ -28,7 +28,8 @@ namespace Umhis.Forms.Account
             Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
-        private DataGridViewColumn CreateGridColumn(string name, string header, int colWidth = 50, DataGridViewColumn colItem = null)
+        private void CreateGridColumn(   string name, string header, int colWidth = 50,
+                DataGridViewColumn colItem = null)
         {
             if (colItem == null)
                 colItem = new DataGridViewTextBoxColumn();
@@ -38,7 +39,6 @@ namespace Umhis.Forms.Account
             colItem.Width = colWidth;
 
             Grid.Columns.Add(colItem);
-            return colItem;
         }
 
         protected override void OnShown(EventArgs e)
@@ -162,8 +162,8 @@ namespace Umhis.Forms.Account
 
             try
             {
-                item.Delete(AppSession.CurrentUser.Username);
-                Grid.Rows.Remove(Grid.CurrentRow);
+                if(item.Delete())
+                    Grid.Rows.Remove(Grid.CurrentRow);
             }
             catch (Exception ex)
             {

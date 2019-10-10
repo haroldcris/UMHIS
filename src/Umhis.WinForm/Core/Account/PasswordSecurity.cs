@@ -23,7 +23,7 @@ namespace Umhis.Core
             : base(message, inner) { }
     }
 
-    public class PasswordSecurity
+    public static class PasswordSecurity
     {
         // These constants may be changed without breaking existing hashes.
         const int SaltBytes = 24;
@@ -64,7 +64,7 @@ namespace Umhis.Core
                 );
             }
 
-            byte[] hash = PBKDF2(password, salt, Pbkdf2Iterations, HashBytes);
+            byte[] hash = Pbkdf2(password, salt, Pbkdf2Iterations, HashBytes);
 
             // format: algorithm:iterations:hashSize:salt:hash
             String parts = "sha1:" +
@@ -100,7 +100,7 @@ namespace Umhis.Core
                 );
             }
 
-            int iterations = 0;
+            int iterations  ;
             try
             {
                 iterations = Int32.Parse(split[IterationIndex]);
@@ -134,7 +134,7 @@ namespace Umhis.Core
                 );
             }
 
-            byte[] salt = null;
+            byte[] salt  ;
             try
             {
                 salt = Convert.FromBase64String(split[SaltIndex]);
@@ -154,7 +154,7 @@ namespace Umhis.Core
                 );
             }
 
-            byte[] hash = null;
+            byte[] hash  ;
             try
             {
                 hash = Convert.FromBase64String(split[Pbkdf2Index]);
@@ -174,7 +174,7 @@ namespace Umhis.Core
                 );
             }
 
-            int storedHashSize = 0;
+            int storedHashSize  ;
             try
             {
                 storedHashSize = Int32.Parse(split[HashSizeIndex]);
@@ -208,7 +208,7 @@ namespace Umhis.Core
                 );
             }
 
-            byte[] testHash = PBKDF2(password, salt, iterations, hash.Length);
+            byte[] testHash = Pbkdf2(password, salt, iterations, hash.Length);
             return SlowEquals(hash, testHash);
         }
 
@@ -222,7 +222,7 @@ namespace Umhis.Core
             return diff == 0;
         }
 
-        private static byte[] PBKDF2(string password, byte[] salt, int iterations, int outputBytes)
+        private static byte[] Pbkdf2(string password, byte[] salt, int iterations, int outputBytes)
         {
             using (Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(password, salt))
             {

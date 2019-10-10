@@ -14,7 +14,7 @@ namespace Umhis.Forms
             this.ConvertEnterKeyToTab();
         }
 
-        private void BtnSave_Click(object sender, System.EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
 

@@ -8,31 +8,20 @@ namespace Umhis.Core
     public class TreatmentHistory : BaseEntity
     {
         public DateTime DateTreated { get; set; }
-        public int PatientId { get; set; }
+        public int PatientId { private get; set; }
         public string Condition { get; set; }
         public string Treatment { get; set; }
-        public string Remarks { get; set; }
+        public string Remarks { private get; set; }
 
-        internal void LoadValuesFrom(IDataReader reader)
-        {
-            DateTreated = reader.GetDateTimeFrom("DateTreated");
-            PatientId = reader.GetInt32From("PatientId");
-            Condition = reader.GetStringFrom("Condition");
-            Treatment = reader.GetStringFrom("Treatment");
-            Remarks = reader.GetStringFrom("Remarks");
-            RecordInfo.CreatedDate = reader.GetDateTimeFrom("created");
-            RecordInfo.ModifiedDate = reader.GetDateTimeFrom("modified");
-        }
-
+        
 
 
         public bool Save(string currentUser)
         {
             using (var db = SqlServer.CreateAndOpenConnection())
             {
-                Save(currentUser, db);
+                return Save(currentUser, db);
             }
-            return true;
         }
 
 
